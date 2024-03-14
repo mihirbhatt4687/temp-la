@@ -11,7 +11,8 @@ phases:
   build:
     commands:
       - echo Build started on 'date'
-      - aws ec2 describe-instances 
+      - export LA_DB_PASS=$(aws secretsmanager get-secret-value --secret-id test-secret --query test --output text)
+      - sed -i -e "s/PLACEHOLDER_LA_DB_PASSWORD/$LA_DB_PASS/g" .env
 
 artifacts:
   files:
