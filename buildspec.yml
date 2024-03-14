@@ -10,7 +10,8 @@ phases:
       - echo This is test pre build commands...
   build:
     commands:
-      - echo Build started on 'date'
+      - echo 'Getting secret..'
+      - aws secretsmanager get-secret-value --secret-id test-secret --query test --output text
       - export LA_DB_PASS=$(aws secretsmanager get-secret-value --secret-id test-secret --query test --output text)
       - sed -i -e "s/PLACEHOLDER_LA_DB_PASSWORD/$LA_DB_PASS/g" .env
 
