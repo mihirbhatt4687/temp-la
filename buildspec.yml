@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+  pre_build:
+    commands:
+      - ls -al
+      - echo This is test pre build commands...
+  build:
+    commands:
+      - echo Build started on 'date'
+      - zip -v
+
+artifacts:
+  files:
+    - '**/*'
+    #- "my-app/build/**/*"
+  #base-directory: 'my-app/build'
+  #discard-paths: yes
