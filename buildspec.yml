@@ -13,7 +13,7 @@ phases:
       - echo 'Getting secret..'
       - aws secretsmanager get-secret-value --secret-id test-secret | jq --raw-output '.SecretString' | jq -r .test
       - export LA_DB_PASS=$(aws secretsmanager get-secret-value --secret-id test-secret | jq --raw-output '.SecretString' | jq -r .test)
-      - sed -i -e "s/PLACEHOLDER_LA_DB_PASSWORD/$LA_DB_PASS/g" .env
+      - sudo sed -i -e "s/PLACEHOLDER_LA_DB_PASSWORD/$LA_DB_PASS/g" .env
 
 artifacts:
   files:
